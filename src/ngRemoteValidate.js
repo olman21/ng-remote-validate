@@ -134,7 +134,7 @@
                                 toValidate = { value: value },
                                 httpOpts = { method: options.ngRemoteMethod };
 
-                            if ( scope.ngUserArgs ) {
+                            if ( scope.requestArgs ) {
                                 toValidate = scope.requestArgs()(value, el, attrs, ngModel);
                             }
 
