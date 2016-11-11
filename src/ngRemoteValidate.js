@@ -10,7 +10,8 @@
                 restrict: 'A',
                 require: [ '^form','ngModel' ],
                 scope: {
-                    ngRemoteInterceptors: '=?'
+                    ngRemoteInterceptors: '=?',
+                    requestArgs: "&"
                 },
                 link: function( scope, el, attrs, ctrls ) {
                     var cache = {},
@@ -133,8 +134,8 @@
                                 toValidate = { value: value },
                                 httpOpts = { method: options.ngRemoteMethod };
 
-                            if ( scope[ el[0].name + 'SetArgs' ] ) {
-                                toValidate = scope[el[0].name + 'SetArgs'](value, el, attrs, ngModel);
+                            if ( scope.ngUserArgs ) {
+                                toValidate = scope.requestArgs()(value, el, attrs, ngModel);
                             }
 
                             if(options.ngRemoteMethod == 'POST'){
